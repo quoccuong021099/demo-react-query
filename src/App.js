@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React from "react";
+import "./App.css";
+
+// "characters": "https://rickandmortyapi.com/api/character",
+// "locations": "https://rickandmortyapi.com/api/location",
+// "episodes": "https://rickandmortyapi.com/api/episode"
+const getListUser = async (params) => {
+  const res = await axios.get(params.queryKey[0]);
+  console.log("res", res);
+  return res.data;
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const { status, error, data } = useQuery(
+    ["https://rickandmortyapi.com/api/character"],
+    getListUser
   );
+  console.log("status", status, error);
+  return <div className="App">a</div>;
 }
 
 export default App;
