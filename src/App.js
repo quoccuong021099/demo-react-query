@@ -1,24 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import React from "react";
 import "./App.css";
-
-// "characters": "https://rickandmortyapi.com/api/character",
-// "locations": "https://rickandmortyapi.com/api/location",
-// "episodes": "https://rickandmortyapi.com/api/episode"
-const getListUser = async (params) => {
-  const res = await axios.get(params.queryKey[0]);
-  console.log("res", res);
-  return res.data;
-};
+import Character from "./components/Character";
 
 function App() {
-  const { status, error, data } = useQuery(
-    ["https://rickandmortyapi.com/api/character"],
-    getListUser
+  return (
+    <div className="App">
+      <div className="container">
+        <h1>Rick and Morty</h1>
+        <Character />
+      </div>
+    </div>
   );
-  console.log("status", status, error);
-  return <div className="App">a</div>;
 }
 
 export default App;
