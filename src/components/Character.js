@@ -16,7 +16,7 @@ const getListUser = async ({ queryKey }) => {
 const Character = () => {
   const [page, setPage] = useState(1);
   const { status, data } = useQuery(["Characters", page], getListUser, {
-    // keepPreviousData: true,
+    keepPreviousData: true,
   });
   const listCharacters = data?.results;
 
